@@ -20,6 +20,8 @@ public class ApplicationDbContext : IdentityDbContext
 {
     base.OnModelCreating(builder);
 
+    builder.Entity<Province>().HasMany(p => p.Cities).WithOne(c => c.Province).HasForeignKey(c => c.ProvinceCode);
+
     builder.Entity<City>().ToTable("City");
     builder.Entity<Province>().ToTable("Province");
 
